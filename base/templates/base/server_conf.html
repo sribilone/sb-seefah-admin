@@ -1,0 +1,139 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.4
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+{% extends 'main.html' %}
+
+{% block aside2 %} active {% endblock aside2 %} <!--to active selected in menu-->
+
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% block title %}
+การตั้งค่า Servers | See Fah Admin System
+{% endblock title %}
+
+{% block content%}
+
+
+<div class="row mt-0 ">
+  <div class="col-lg mb-lg-0 mb-4">
+      <div class="card ">
+          <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                  <h6 class="mb-2">การตั้งค่า Servers</h6>
+                  
+              </div>
+          </div>
+
+          <hr class="horizontal dark mt-0">
+          {% for conf in server %}
+
+          <ul class="nav nav-tabs mx-5 mb-3">
+            <li class="nav-item">
+              <a class="nav-link {{conf.qseefah}}" href="{% url 'server-conf'%}?q=seefah">See Fah</a>
+            </li>
+            <li class="nav-item mx-1">
+              <a class="nav-link {{conf.qduobao}}" href="{% url 'server-conf'%}?q=duobao">Duobao</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{conf.qosakaohsho}}" href="{% url 'server-conf'%}?q=osakaohsho">Osakaohsho</a>
+            </li>
+            <li class="nav-item mx-1">
+              <a class="nav-link {{conf.qbakebros}}" href="{% url 'server-conf'%}?q=bakebros">Bake Bros</a>
+            </li>
+          </ul>
+
+
+          <div class="p-3 mx-10">
+
+            {% if conf.set == 'default' %}
+
+            <div class="d-flex justify-content-center py-5 px-0">
+            <h5 class="text-danger"> <i class="bi bi-tools"></i> กรุณาเลือกฐานข้อมูลที่ท่านต้องการแก้ไข</h5>
+            </div>
+            {% else %}
+            <form action="" method="POST">
+              {% csrf_token %}
+
+              <div class="row">
+                <div class="col-lg-9">
+                  <label for="">Host: </label>
+                  <input type="text" name="host" id="" class="form-control" placeholder="{{conf.host}}" value="{{conf.host}}" aria-describedby="helpId">
+                  {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+                </div>
+                <div class="col-lg-3">
+                  <label for="">Port: </label>
+                  <input type="text" name="port" id="" class="form-control" placeholder="{{conf.port}}" value="{{conf.port}}" aria-describedby="helpId">
+                  {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+                </div>
+              </div>
+              
+              <div class="row mt-4">
+                <div class="col-lg">
+                  <label for="">Database: </label>
+                  <input type="text" name="database_name" id="" class="form-control" placeholder="{{conf.database_name}}" value="{{conf.database_name}}" aria-describedby="helpId">
+                  {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+                </div>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-lg">
+                  <label for="">Username: </label>
+                  <input type="text" name="username" id="" class="form-control" placeholder="กรุณากรอกชื่อผู้ใช้" value="{{conf.username}}" aria-describedby="helpId">
+                  {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+                </div>
+                <div class="col-lg">
+                  <label for="">Password: </label>
+                  <input type="Password" name="password" id="" class="form-control" placeholder="กรุณากรอกรหัสผ่าน" value="{{conf.password}}" aria-describedby="helpId">
+                  {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+                </div>
+              </div>
+              
+              <div class="d-flex justify-content-center mt-5">
+                <a role="button"class="btn btn-outline-danger" href="{% url 'server-conf' %}?q=default" >ยกเลิก</a>
+                <button type="submit" class="btn btn-success mx-2"><i class="fas fa-save"></i> บันทึก</button>
+              </div>
+
+              
+            </form>
+
+          </div>
+          {% endif %}
+          {% endfor %}
+      </div>
+  </div>
+</div>
+  <script src="{% static 'js/core/popper.min.js' %}"></script>
+  <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'js/plugins/chartjs.min.js' %}"></script>
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../static/js/argon-dashboard.min.js?v=2.0.4"></script>
+{% endblock content %}

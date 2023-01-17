@@ -1,0 +1,169 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.4
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+{% extends 'main.html' %} {% block aside4 %} active {% endblock aside4 %}
+<!--to active selected in menu-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  {% block title %} Data Warehouse | See Fah Admin System {% endblock title%} 
+  
+  {% block content%}
+
+  <div class="row mt-0">
+    <div class="col-lg mb-sm-2">
+      <div class="card">
+        <div class="card-header pb-0 p-3">
+          <div class="d-flex justify-content-between">
+            <h6 class="mb-2">การจัดการ Data Warehouse</h6>
+          </div>
+        </div>
+        <hr class="horizontal dark mt-0">
+
+        <div class="card-body px-3 pt-0 pb-3">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="row mt-0">
+                <div class="col-3">
+                    <label for="">เลือกเดือน</label>
+                    <select class="form-control" name="month" id="" value="" required>
+                        <option selected></option>
+                        <option value=0 >All</option>
+                        <option value=1 >January</option>
+                        <option value=2 >February</option>
+                        <option value=3 >March</option>
+                        <option value=4 >April</option>
+                        <option value=5 >May</option>
+                        <option value=6 >June</option>
+                        <option value=7 >July</option>
+                        <option value=8 >August</option>
+                        <option value=9 >September</option>
+                        <option value=10 >October</option>
+                        <option value=11 >November</option>
+                        <option value=12 >December</option>
+                    </select>
+                </div>
+
+                <div class="col-3">
+                </div>
+
+                <div class="col-3">
+                </div>
+
+                <div class="col-1">
+                </div>
+
+                <div class="col-2 d-flex justify-content-end d-flex align-items-center">
+                  <button type="submit" class="btn btn-success mt-3 mb-0"><i class="fa-solid fa-magnifying-glass"></i> ค้นหา</button>
+                </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-lg mb-lg-0 mb-5">
+      <div class="card">
+        <div class="card-header pb-0 p-3">
+          <div class="d-flex justify-content-between">
+            <h6 class="mb-2">Sale Order Transaction</h6>
+          </div>
+        </div>
+
+        <div class="card-body px-3 pt-0 pb-3">
+            <div class="table-responsive table-responsive-x p-0" style="ex1">
+              <table class="table table-fixed align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">TransComp ID</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Shop ID</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Shop name</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Sale date</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Open time</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Paid time</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Sale mode</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">No. Costomer</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Table ID</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Total Retail Price</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Total Retail Price Before VAT</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Total Retail Price VAT</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Discount Price</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Discount Before VAT</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Total amount</th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder px-2">Member Code</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for data in table %}
+                    <div class="d-flex px-5">
+                    <tr>
+                      													
+                        <td class="text-xs">{{data.transcompid}}</td>
+                        <td class="text-xs ">{{data.shopid}}</td>
+                        <td class="text-xs ">{{data.shopname}}</td>
+                        <td class="text-xs ">{{data.saledate}}</td>
+                        <td class="text-xs ">{{data.opentime}}</td>
+                        <td class="text-xs ">{{data.paidtime}}</td>
+                        <td class="text-xs ">{{data.salemode}}</td>
+                        <td class="text-xs ">{{data.nocustomer}}</td>
+                        <td class="text-xs ">{{data.tableid}}</td>
+                        <td class="text-xs ">{{data.totalretailprice}}</td>
+                        <td class="text-xs ">{{data.totalretailpricebeforevat}}</td>
+                        <td class="text-xs ">{{data.totalretailpricevat}}</td>
+                        <td class="text-xs ">{{data.discountprice}}</td>
+                        <td class="text-xs ">{{data.discountpricebeforevat}}</td>
+                        <td class="text-xs ">{{data.totalamount}}</td>
+                        <td class="text-xs ">{{data.membercode}}</td>
+
+                    
+                    </tr>
+                </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+
+      
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/core/popper.min.js' %}"></script>
+  <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'js/plugins/chartjs.min.js' %}"></script>
+
+  <script>
+    var win = navigator.platform.indexOf("Win") > -1;
+    if (win && document.querySelector("#sidenav-scrollbar")) {
+      var options = {
+        damping: "0.5",
+      };
+      Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+    }
+  </script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../static/js/argon-dashboard.min.js"></script>
+  {% endblock content %}
+</html>

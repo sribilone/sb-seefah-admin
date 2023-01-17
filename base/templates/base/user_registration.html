@@ -1,0 +1,174 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.4
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+{% extends 'main.html' %} {% block aside5 %} active {% endblock aside5 %}
+<!--to active selected in menu-->
+
+{% load static %}
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Kanit&family=Prompt&display=swap"
+  rel="stylesheet"
+/>
+
+<!DOCTYPE html>
+<html lang="en">
+  {% block title %} User Register | See Fah Admin System {% endblock title%}
+  {% block content%}
+
+  <div class="row mt-0">
+    <div class="col-lg mb-sm-2">
+      <div class="card">
+        <div class="card-header pb-0 p-3">
+          <div class="d-flex justify-content-between">
+            <h6 class="mb-2">User Register</h6>
+            <a class="btn btn-link text-primary text-center mb-0" href="{{request.META.HTTP_REFERER}}">
+              <i class="fa-solid fa-delete-left"></i>&nbsp  ย้อนกลับ</a>
+          </div>
+        </div>
+        <hr class="horizontal dark mt-0">
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-lg-3">
+    <div class="col-lg mb-lg-0 mb-5">
+      <div class="card">
+               
+        <div class="card-body p-2 mx-2 m-2 px-5">
+          <form class="form" action="" method="post">
+            {% csrf_token %}
+            <div class="row mt-3">
+              <div class="col-lg-6">
+                <label for="">ชื่อ </label>
+                <input type="text" name="fname" id="" class="form-control" placeholder="" value="" required>
+                {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+              </div>
+              <div class="col-lg-6">
+                <label for="">นามสกุล </label>
+                <input type="text" name="lname" id="" class="form-control" placeholder="" value="" required>
+                {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+              </div>
+            </div>
+            
+            <div class="row mt-2">
+              <div class="col-lg-4">
+                <label for="">เบอร์โทรศัพท์</label>
+                <input type="text" name="phone" id="" class="form-control" placeholder="" value="">
+                {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+              </div>
+              <div class="col-lg-8">
+                <label for="">อีเมล</label>
+                <input type="text" name="email" id="" class="form-control" placeholder="" value="" required>
+                {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+              </div>
+            </div>
+
+            <div class="row mt-2 mb-3">
+              <div class="col-lg-4">
+                <label for="">ตำแหน่ง</label>
+                <input type="text" name="compos" id="" class="form-control" placeholder="" value="" required>
+                {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+              </div>
+              <div class="col-lg-8">
+                <label for="">ประเภทผู้ใช้</label>
+                <select class="form-control" name="typerole" id="" value="" required>
+                    <option selected></option>
+                    <option value="Admin Editor">Admin Editor</option>
+                    <option value="Admin System">Admin System</option>
+                </select>
+                {% comment %} <small id="helpId" class="text-muted">Help text</small> {% endcomment %}
+              </div>
+            </div>
+            
+            <hr class="horizontal dark mt-0">
+            
+            <div class="row mt-2">
+              <p class="text-sm opacity-7">Username and Password Setting</p>
+            </div>
+
+            <div class="row mb-3">
+
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-lg">
+                    <label for="">ชื่อผู้ใช้</label>
+                    <input type="text" name="username" id="" class="form-control" placeholder="" value="" required>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg">
+                    <label for="">รหัสผ่าน</label>
+                    <input type="text" name="password" id="" class="form-control" placeholder="" value="" required>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-lg">
+                    <label for="">ยืนยันรหัสผ่านอีกครั้ง</label>
+                    <input type="text" name="cpassword" id="" class="form-control" placeholder="" value="" required>
+                  </div>
+                </div>
+
+              </div> {% comment %}  end col  {% endcomment %}
+              
+              <div class="col-lg-6">
+                <span class="text-sm">Note</span>
+                <span>
+
+
+
+                </span>
+              </div>
+
+
+            </div> {% comment %}  end row  {% endcomment %}
+
+            
+
+
+            <div class="d-flex justify-content-center mt-3">
+              <a type="button" class="btn btn-outline-danger" href="{% url 'user-management' %}">ยกเลิก</a>
+              <button type="submit" class="btn btn-success mx-2"><i class="fas fa-save"></i> บันทึก</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="{% static 'js/core/popper.min.js' %}"></script>
+  <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'js/plugins/chartjs.min.js' %}"></script>
+
+  <script>
+    var win = navigator.platform.indexOf("Win") > -1;
+    if (win && document.querySelector("#sidenav-scrollbar")) {
+      var options = {
+        damping: "0.5",
+      };
+      Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+    }
+  </script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../static/js/argon-dashboard.min.js"></script>
+  {% endblock content %}
+</html>

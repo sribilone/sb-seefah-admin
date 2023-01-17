@@ -1,0 +1,103 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.4
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+{% extends 'main.html' %} {% block aside5 %} active {% endblock aside5 %}
+<!--to active selected in menu-->
+
+{% load static %}
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit&family=Prompt&display=swap" rel="stylesheet">
+
+<!DOCTYPE html>
+<html lang="en">
+  {% block title %} User Management | See Fah Admin System {% endblock title%} 
+  
+  {% block content%}
+
+  <div class="row mt-0">
+    <div class="col-lg mb-lg-0 mb-5">
+      <div class="card">
+        <div class="card-header pb-0 p-3">
+          <div class="d-flex justify-content-between">
+            <h6 class="mb-2">User Management</h6>
+            <a name="" id="" class="btn btn-success" href="{% url 'user-registration' %}" role="button">
+              <i class="fa-solid fa-user-plus"></i> เพิ่มบัญชีผู้ใช้
+            </a>
+          </div>
+        </div>
+
+        
+
+        <div class="card-body px-5 pt-0 pb-3">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center">
+              <thead>
+                <tr>
+                  {% comment %} <th class="text-sm px-2">#</th> {% endcomment %}
+                  <th class="text-sm px-2">ชื่อผู้ใช้</th>
+                  <th class="text-sm font-weight-bolder px-2">ชื่อ</th>
+                  <th class="text-sm font-weight-bolder px-2">นามสกุล</th>
+                  <th class="text-sm font-weight-bolder px-2">อีเมล</th>
+                  <th class="text-sm font-weight-bolder text-center">ลบข้อมูล</th>
+                  <th class="text-sm font-weight-bolder text-center">แก้ไขข้อมูล</th>
+                </tr>
+              </thead>
+              <tbody> 
+                  {% for user in users %} 
+                  <tr>                     
+                    
+                      {% comment %} <td class="col-1 text-sm">{{user.id}}</td> {% endcomment %}
+                      <td class="col-2 text-sm ">{{user.username}}</td>
+                      <td class="col-3 text-sm ">{{user.first_name}}</td>
+                      <td class="col-3 text-sm ">{{user.last_name}}</td>
+                      <td class="col-3 text-sm ">{{user.email}}</td>
+                      <td class="text-xs ">
+                        <a class="btn btn-link text-danger text-gradient text-center mb-0" href="{% url 'user-delete'%}?q={{user.id}}"><i class="fa-regular fa-trash-can"></i>&nbsp  ลบ</a>
+                      </td>
+                      <td class="text-xs ">
+                        <a class="btn btn-link text-dark text-center mb-0" href="{% url 'user-edit'%}?q={{user.id}}"><i class="fa-solid fa-pencil" aria-hidden="true"></i>&nbsp แก้ไข</a>
+                      </td>         
+                  </tr>
+                  {% endfor %} 
+                  </tbody>
+              </table>
+          </div>
+        </div>
+
+      
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/core/popper.min.js' %}"></script>
+  <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'js/plugins/chartjs.min.js' %}"></script>
+
+  <script>
+    var win = navigator.platform.indexOf("Win") > -1;
+    if (win && document.querySelector("#sidenav-scrollbar")) {
+      var options = {
+        damping: "0.5",
+      };
+      Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+    }
+  </script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../static/js/argon-dashboard.min.js"></script>
+  {% endblock content %}
+</html>
